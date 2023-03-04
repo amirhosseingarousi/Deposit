@@ -33,14 +33,15 @@ public class Main {
 
         List<Deposit> deposits = createDepositObject(nodeList);
         setAllPayedInterest(deposits);
-        Collections.sort(deposits);
+//        Collections.sort(deposits);
 
-//        createOutputFile(deposits);
+        createOutputFile(deposits);
     }
 
     private static void createOutputFile(List<Deposit> deposits) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+            Collections.sort(deposits);
             for (Deposit deposit : deposits) {
                 String customerNumber = deposit.getCustomerNumber();
                 double payedInterest = deposit.calcPayedInterest();
