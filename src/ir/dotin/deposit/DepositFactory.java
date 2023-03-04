@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 public class DepositFactory {
 
     public static Deposit createDeposit(String number, String type, BigDecimal balance, int days) {
-        if (type.equals("Qarz")) {
+        if ("Qarz".equals(type)) {
             return new Qarz(number, type, balance, days);
         } else if (type.equals("ShortTerm")) {
             return new ShortTerm(number, type, balance, days);
@@ -15,6 +15,7 @@ public class DepositFactory {
             return new LongTerm(number, type, balance, days);
         }
 
-        throw new InvalidTypeException("Invalid deposit type");
+        return new Qarz(null, null, null, 0);
+//        throw new InvalidTypeException("Invalid deposit type");
     }
 }
