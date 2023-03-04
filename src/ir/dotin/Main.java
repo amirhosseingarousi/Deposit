@@ -23,9 +23,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
 
-//        Deposit qarze = DepositFactory.createDeposit("48483", "Qarz", new BigDecimal("145000"), 38);
-//        Deposit shortTerm = DepositFactory.createDeposit("534900", "ShortTerm", new BigDecimal("200000"), 25);
-//        Deposit longTerm = DepositFactory.createDeposit("658951", "LongTerm", new BigDecimal("545966600000"), 1000);
+        Deposit qarze = DepositFactory.createDeposit("48483", "Qarz", new BigDecimal("145000"), 38);
+        Deposit shortTerm = DepositFactory.createDeposit("534900", "ShortTerm", new BigDecimal("0"), 25);
+        Deposit longTerm = DepositFactory.createDeposit("658951", "LongTerm", new BigDecimal("545966600000"), 1000);
 
 //        System.out.println(qarze);
 //        System.out.println(shortTerm);
@@ -35,7 +35,7 @@ public class Main {
         NodeList nodeList = readXMLFile(file);
 
         List<Deposit> deposits = createDepositObject(nodeList);
-        createOutputFile(deposits);
+//        createOutputFile(deposits);
     }
 
     private static void createOutputFile(List<Deposit> deposits) {

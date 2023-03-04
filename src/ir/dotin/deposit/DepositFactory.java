@@ -1,5 +1,7 @@
 package ir.dotin.deposit;
 
+import ir.dotin.deposit.exceptions.InvalidTypeException;
+
 import java.math.BigDecimal;
 
 public class DepositFactory {
@@ -13,6 +15,6 @@ public class DepositFactory {
             return new LongTerm(number, type, balance, days);
         }
 
-        return null;
+        throw new InvalidTypeException("Invalid deposit type");
     }
 }
