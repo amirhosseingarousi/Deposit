@@ -6,12 +6,13 @@ import ir.dotin.deposit.exceptions.InvalidTypeException;
 
 import java.math.BigDecimal;
 
-public abstract class Deposit {
+public abstract class Deposit implements Comparable<Deposit> {
 
     private String customerNumber;
     private String depositType;
     private BigDecimal depositBalance;
     private int durationInDays;
+    private double payedInterest;
 
     public abstract double calcPayedInterest();
 
@@ -47,6 +48,16 @@ public abstract class Deposit {
         this.depositBalance = balance;
     }
 
+    @Override
+    public int compareTo(Deposit o) {
+        if (payedInterest == o.payedInterest) {
+            return 0;
+        } else if (payedInterest < o.payedInterest) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 
     public String getCustomerNumber() {
         return customerNumber;
@@ -62,6 +73,10 @@ public abstract class Deposit {
 
     public int getDurationInDays() {
         return durationInDays;
+    }
+
+    public void setPayedInterest(double payedInterest) {
+        this.payedInterest = payedInterest;
     }
 
     @Override

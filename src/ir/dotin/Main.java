@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -27,14 +28,13 @@ public class Main {
         Deposit shortTerm = DepositFactory.createDeposit("534900", "ShortTerm", new BigDecimal("200000"), 25);
         Deposit longTerm = DepositFactory.createDeposit("658951", "LongTerm", new BigDecimal("545966600000"), 1000);
 
-//        System.out.println(qarze);
-//        System.out.println(shortTerm);
-//        System.out.println(longTerm);
-
         File file = new File("src\\ir\\dotin\\deposits.xml");
         NodeList nodeList = readXMLFile(file);
 
         List<Deposit> deposits = createDepositObject(nodeList);
+        setAllPayedInterest(deposits);
+        Collections.sort(deposits);
+
 //        createOutputFile(deposits);
     }
 
@@ -68,6 +68,12 @@ public class Main {
             deposits.add(deposit);
         }
         return deposits;
+    }
+
+    private static void setAllPayedInterest(List<Deposit> deposits) {
+        for (Deposit deposit : deposits) {
+            deposit.setPayedInterest(deposit.calcPayedInterest());
+        }
     }
 
     private static NodeList readXMLFile(File file) throws ParserConfigurationException, IOException, SAXException {
